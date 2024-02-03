@@ -33,7 +33,7 @@ class Snake{
     }
 
     show(){
-        
+        fill(255)
         for (let i = 0; i< this.size; i++) {
             rect((width/this.cols)*this.snake[i].getX(),(height/rows)*this.snake[i].getY(),height/this.cols, width/this.rows);
         }
@@ -46,7 +46,6 @@ class Snake{
                 this.snake[0].setY(this.rows-1);  
             }else{
                 this.snake[0].setY(this.snake[0].getY() - 1);            }
-            console.log(this.snake[0].getX()+" "+this.snake[0].getY())
 
             if(this.snake.length>1){
                 for (let i = 1; i < this.snake.length; i++) {
@@ -61,7 +60,6 @@ class Snake{
             }else{
                 this.snake[0].setY(this.snake[0].getY()+1);
             }
-            console.log(this.snake[0].getX()+" "+this.snake[0].getY())
 
             if(this.snake.length>1){
                 for (let i = 1; i < this.snake.length; i++) {
@@ -98,14 +96,22 @@ class Snake{
         } 
     }
 
-    eat(fruit){
-      if(fruit==1){
-        this.size++;
-      }
-    }
-
     collision(){
      this.snake[0].setY(0);
+    }
+
+    snakePositions(x,y){
+        for (let i = 0; i < this.snake.length; i++) {
+            if(this.snake[i].getY()==y && this.snake[i].getX()==x){
+                return true;
+            }
+        }
+    }
+
+    eat(x,y){
+       if(this.snake[0].getX()==x && this.snake[0].getY()==y){
+        return true;
+       }
     }
 
 
